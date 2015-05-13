@@ -2,6 +2,8 @@ package server;
 
 import java.util.ArrayList;
 
+// listens for messages from a Connection.  
+// A different MsgListener object is created for each Connection
 public class MsgListener implements Runnable{
 	private Connection conn;
 	
@@ -11,24 +13,9 @@ public class MsgListener implements Runnable{
 
 	@Override
 	public void run() {
-		while(true){
+		while(true){ // listens for new messages as long as the Connection is alive
 			String msg = conn.read();
 			conn.dataIn(msg);
-//			if(connections.size()!=0){
-//				for (int i = 0;i<connections.size();i++){
-//					
-//					String msg = connections.get(i).read();
-//					svr.writeData(msg);
-//				}
-//			}
-//			else{
-//				System.out.println("Error, no clients connected!");
-//				try {
-//					Thread.sleep(3000);
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//			}
 		}
 	}
 }
