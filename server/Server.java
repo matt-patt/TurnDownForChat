@@ -5,6 +5,8 @@ import java.net.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+//Server Object contains a ServerSocket and an ArrayList of Connections
+//manages the list of Connections, the MsgListener Object, and the ConnListener Object
 public class Server {
 	private ServerSocket server;
 	private ArrayList<Connection> connections; // ArrayList used because auto left shift; won't have a connection at [1] not open, while one at [7] is if the user disconnects
@@ -31,9 +33,9 @@ public class Server {
 		}
 	}
 	
-	protected void addConnection(Socket sock){
-		connections.add(new Connection(sock, this));
-		//System.out.println("New Connection! - " + connections.get(connections.size()-1).getSocket());
+	protected void addConnection(Socket sock){ // adds a new connection from the ConnectListener
+		connections.add(new Connection(sock, this)); // adds the new Connection into the ArrayList
+		System.out.println("New Connection! - " + connections.get(connections.size()-1).getSocket());
 	}
 	
 	
